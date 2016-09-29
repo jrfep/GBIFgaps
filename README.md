@@ -3,11 +3,11 @@ GBIF vs range maps: ranking novel occurrences and knowlege gaps in GBIF data
 
 I developed a simple R-code in order to assess spatial gaps in GBIF data. I use range maps as a source of expert knowlege to validate the geographical extent of occurrence data from GBIF. I summarize the results in a triangular plot that identifies three possible outcomes: overlap, data gaps, knowledge gaps. This will be helpful for users of GBIF data, but also to data providers. Users will be able to assess how representative is the GBIF-data for a species of interest. Data providers will be able to see which areas are under-sampled or under-represented in the database for each species, and might be able to spot inconsistencies in ranges that might be related to taxonomic problems (wrong identification or changes in taxonomy). 
 
-Why is this important?
+**Why is this important?**
 
 GBIF's distribution data is based on the contribution of several individuals and organizations worldwide, but this might not be synchronized with the current state of expert knowledge about species distributions. Some geographical regions might be under-represented in GBIF database (DATA GAP), but also new discoveries and considerable range extensions might be recorded in GBIF sources before they get incorporated in other sources of knowledge (KNOWLEDGE GAP).
 
-How does this work?
+**How does this work?**
 
 My approach to compare these sources is based on simple comparisons of polygon overlaps. I consider two sources of distribution knowledge: expert's opinion and GBIF data. Published range maps from different sources can be used as a proxy for expert's opinion. I use the alpha-hull method to convert species occurrence records downloaded from GBIF into a comparable distribution range.
 
@@ -18,7 +18,7 @@ The resulting GBIF-range (set G) is compared to existing range maps (set E) for 
 
 If both sources have high overlap then the area in (E intersect G) will be much higher than the areas in (E-G) and (G-E). In this optimal case, GBIF occurrence records can be used with confidence. Mismatch between sources can have multiple interpretations: higher (E-G) usually represents lack of sampling or digitalization effort, higher (G-E) might have positive or negative implications. On the one hand GBIF data might be providing new distribution records to complement the expert's-range, but there can also be a mismatch due to errors in identification, changes in taxonomy or differences in nomenclature between sources. 
 
-Why is this useful?
+**Why is this useful?**
 
 I use a triangular plot in order to summarize the proportion of area in each of these three regions. This is a simple visual aid to assess the status of GBIF data for a species, and how to improve it. It can be used to compare different sources of expert's ranges, or to compare species within a genus, family or higher taxonomic range.
 
@@ -26,7 +26,7 @@ A user, data provider or data manager can see at a glance whether the results fo
 
 In case of OVERLAP the results can be used with higher confidence. In case of spotting a DATA GAP the users might decide to use alternative data sources, while data providers could gather efforts to close this geographical gaps. In case of KNOWLEDGE GAP, data providers and data managers should check for errors in identification or georeferencing in their data, or check the consistency of the taxonomy used.
 
-FILES AND DATA
+**FILES AND DATA**
 
 R code for a single species example and multiple species is included in folder 'R'.
 
@@ -36,7 +36,7 @@ Gbif data used in the examples was downloaded using the rgbif-package interfase 
 
 Output image files are kept in folder 'img'.
 
-SOURCES USED
+**SOURCES USED**
 
 _Software and packages_
 
