@@ -40,7 +40,7 @@ Output image files are kept in folder 'img'.
 
 _Software and packages_
 
-I used R version 3.3.1 and packages raster (version 2.5-8), sp (version 1.2-3), rgbif (version 0.9.4), alphahull (version 2.1), spdep (version 0.6-6), Matrix (version 1.2-6), RColorBrewer (version 1.1-2).
+I used R (version 3.3.1) and packages raster (version 2.5-8), sp (version 1.2-3), rgbif (version 0.9.4), alphahull (version 2.1), spdep (version 0.6-6), Matrix (version 1.2-6), plotrix (version 3.6-3), RColorBrewer (version 1.1-2).
 
 * Douglas Bates and Martin Maechler (2016). Matrix: Sparse and Dense
   Matrix Classes and Methods. R package version 1.2-6.
@@ -62,6 +62,9 @@ I used R version 3.3.1 and packages raster (version 2.5-8), sp (version 1.2-3), 
 * Robert J. Hijmans (2016). raster: Geographic Data Analysis and
   Modeling. R package version 2.5-8.
   https://CRAN.R-project.org/package=raster
+
+* Lemon, J. (2006) Plotrix: a package in the red light district of R.
+  R-News, 6(4): 8-12.
 
 * Erich Neuwirth (2014). RColorBrewer: ColorBrewer Palettes. R package
   version 1.1-2. https://CRAN.R-project.org/package=RColorBrewer
