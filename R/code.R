@@ -1,8 +1,17 @@
 ##R --vanilla
-require(raster)
-require(rgbif)
-require(alphahull)
-require(spdep)
+## Script ''GBIFgaps''
+##    for assessing data and knowledge gaps in GBIF distribution data
+if (require(raster) &
+    require(rgbif) &
+    require(alphahull) &
+    require(spdep) &
+    require(RColorBrewer)) {
+    cat("All packages loaded\n")
+} else {
+    stop("Some package(s) missing! you might need to install some dependencies too.")
+}
+
+## run this script to load some helper functions
 source("R/functions.R")
 
 ## World borders from thematicmapping.org:
@@ -13,6 +22,10 @@ wlim <- poly2nb(wrld)
 ## example range maps from Socioeconomic Data and Applications Center (SEDAC). http://sedac.ciesin.columbia.edu/data/set/species-v1-americas-bird-presence
 ## see Readme for detailed sources and recommendations
 lst <- dir("data/","shp$")
+
+##script to run example code for Amazona amazonica 
+source("R/code1_example_Amazona_amazonica.R")
+
 
 ## We will summarize data for each species
 summaries.spp <- data.frame()
@@ -126,11 +139,15 @@ for (k in 1:length(lst)) {
 }
 
 
+plot(overlap,legend=F)
+plot(wrld,add=T)
+
+
 summaries.spp[,3:5]*100/rowSums(summaries.spp[,3:5])
 soil.texture(summaries.spp[,3:5]*100/rowSums(summaries.spp[,3:5]))
 
 overlap.plot(summaries.spp[,3:5]*100/rowSums(summaries.spp[,3:5]),
-             col.symbols="slateblue4",col.labels="grey77")
+             col.symbols=1,col.labels="grey77")
 
 
 for (k in 1:length(lst)) {
@@ -238,8 +255,8 @@ for (k in 1:length(lst)) {
     }
 }
 
-overlap.plot(summaries.spp[,3:5]*100/rowSums(summaries.spp[,3:5]),
-             col.labels="grey77",col.symbols=summaries.spp$spp,cex=summaries.spp$alpha/5)
+overlap.plot(summaries.spp[1:10,3:5]*100/rowSums(summaries.spp[1:10,3:5]),
+             col.labels="grey47",col.symbols=summaries.spp$spp,cex=summaries.spp$alpha/5)
 triax.abline(r=.5,b=.5,l=.5,lty=2,col=2)
 
 

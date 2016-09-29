@@ -89,3 +89,70 @@ ah2sp <- function(x, increment=360, rnd=10, proj4string=CRS(as.character(NA))){
   }  
   return(res)
 }
+
+## auxiliary function 'overlap.plot' modified from
+## 'soil.texture' function in plotrix-package
+
+overlap.plot <- function (soiltexture = NULL, main = "", at = seq(0.1, 0.9, by = 0.1), col.labels,
+                          axis.labels = c(
+                              expression(G - E),
+                              expression(E - G),
+                              expression(G *intersect(E))
+                          ), 
+    tick.labels = list(l = seq(10, 90, by = 10), r = seq(10, 
+        90, by = 10), b = seq(10, 90, by = 10)), show.names = TRUE, 
+    show.lines = TRUE, col.names = "gray", bg.names = par("bg"), 
+    show.grid = FALSE, col.axis = "black", col.lines = "gray", 
+    col.grid = "gray", lty.grid = 3, show.legend = FALSE, label.points = FALSE, 
+    point.labels = NULL, col.symbols = "black", pch = par("pch"), 
+    ...) 
+{
+    par(xpd = TRUE)
+    plot(0.5, type = "n", axes = FALSE, xlim = c(0, 1), ylim = c(0, 
+        1), main = NA, xlab = NA, ylab = NA)
+    triax.plot(x = NULL, main = main, at = at, axis.labels = axis.labels, 
+        tick.labels = tick.labels, col.axis = col.axis, show.grid = show.grid, 
+        col.grid = col.grid, lty.grid = lty.grid)
+    arrows(0.12, 0.41, 0.22, 0.57, length = 0.15)
+    arrows(0.78, 0.57, 0.88, 0.41, length = 0.15)
+    arrows(0.6, -0.1, 0.38, -0.1, length = 0.15)
+    
+    if (show.names) {
+        xpos <- c(0.5, 0.25, ##0.25,
+                  0.75,##0.75,
+                  .5,.5,.5)
+        ypos <- c(0.6, 0.06,##0.13,
+                  0.06,##0.13,
+                  .45,.41,.36) * sin(pi/3)
+        snames <- c("mostly overlapping",
+                    ##"range nested in GBIF hull",
+                    expression(E %subset% G),
+                    ##"GBIF data nested in range",
+                    expression(G %subset% E),
+                    ##"lack of data in GBIF",
+                    "complementarity","between","sources"
+                    )
+        boxed.labels(xpos, ypos, snames, border = FALSE, xpad = 0.5,
+                     col=col.labels)
+    }
+    par(xpd = FALSE)
+    if (is.null(soiltexture)) 
+        return(NULL)
+    soilpoints <- triax.points(soiltexture, show.legend = show.legend, 
+        label.points = label.points, point.labels = point.labels, 
+        col.symbols = col.symbols, pch = pch, ...)
+    invisible(soilpoints)
+}
+
+## Function overlap.Ranges to create a raster representaiton of the
+## spatial overlap of expert's range and the alpha-hull around GBIF data
+overlap.Ranges <- function(bounding.box,expert.range,GBIF.hull,GBIF.data) {
+    r0 <- raster(bounding.box,nrow=1000,ncol=1000,crs=expert.range@proj4string)
+    r1 <- rasterize(expert.range,r0)
+    r2 <- rasterize(GBIF.hull,r0)
+    r3 <- rasterize(GBIF.data,r0)
+    values(r3)[cellFromXY(r0,GBIF.data)] <- 1
+    b3 <- buffer(r3, width=10000)
+    r3 <- b3 | r2
+    return((!is.na(r3)) + (!is.na(r1))*2)
+}
