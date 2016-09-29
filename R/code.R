@@ -22,7 +22,9 @@ wlim <- poly2nb(wrld)
 
 ## example range maps from Socioeconomic Data and Applications Center (SEDAC). http://sedac.ciesin.columbia.edu/data/set/species-v1-americas-bird-presence
 ## see Readme for detailed sources and recommendations
-lst <- dir("data/","shp$")
+mi.lib <- "data/"
+lst <- dir(mi.lib,"shp$")
+gbif.dir <- "Rdata"
 
 ## prepare some R objects
 ##nmbrs <- c("outside.range","G.notE","E.notG","EG.intersect")
@@ -68,11 +70,12 @@ for (k in 1:length(lst)) {
                                  GE=ifelse (any(tt$sets %in% 3),
                                      subset(tt,sets %in% 3)$area.km2,0)))
             ## script to create some images for each species
-            source("R/code3_figures.R")
+            ## source("R/code3_figures.R")
         }
     }
 }
-
+##save(file=sprintf("Rdata/summary_example_SEDAC.R"),
+##     summaries.spp)
 
 ## script to create some images for the presentation
 ##   at https://youtu.be/sCSlzzgab8Q
@@ -81,3 +84,34 @@ for (k in 1:length(lst)) {
        
 
 
+## 2nd example, range maps from Birdlife International and NatureServe
+## see Readme for detailed sources and recommendations
+## change value of mi.lib to the directory containing downloaded shapefiles
+## change value of gbif.dir to the directory containing Rdata files
+mi.lib <- "/opt/gisdata/distribuciones/BirdLife/"
+gbif.dir <- "~/Rdata"
+lst <- dir(mi.lib,"shp$")
+
+##script to run example code for all Psittacidae
+## and different values of alpha
+for (k in 1:length(lst)) {
+    source("R/code1_single_species.R")
+    for (mi.alpha in seq(2,16)) {
+        if (!any(summaries.spp$spp %in% spp &
+                     summaries.spp$alpha %in% mi.alpha)) {
+            source("R/code2_single_alpha.R")
+            summaries.spp <-
+                rbind(summaries.spp,
+                      data.frame(spp,
+                                 alpha=mi.alpha,
+                                 G.=ifelse (any(tt$sets %in% 1),
+                                     subset(tt,sets %in% 1)$area.km2,0),
+                                 .E=ifelse (any(tt$sets %in% 2),
+                                     subset(tt,sets %in% 2)$area.km2,0),
+                                 GE=ifelse (any(tt$sets %in% 3),
+                                     subset(tt,sets %in% 3)$area.km2,0)))
+        }
+    }
+}
+save(file=sprintf("Rdata/summary_example_BirdLife.R"),
+     summaries.spp)

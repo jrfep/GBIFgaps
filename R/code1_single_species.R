@@ -1,8 +1,11 @@
 ## First read shapefile of the selected species (range map)
 ## according to sedac/ciesin database
-shp <- shapefile(sprintf("data/%s",lst[k]))
-spp <- unique(shp@data$SCI_NAME)
-
+shp <- shapefile(sprintf("%s/%s",mi.lib,lst[k]))
+if ("SCI_NAME" %in% colnames(shp@data)) {
+    spp <- unique(shp@data$SCI_NAME)
+} else {
+    spp <- unique(shp@data$SCINAME)
+}
 ## spatial overlay of range map with world map of countries 
 qst <- over(shp,wrld,returnList=T)
 qst <- unlist(lapply(qst,function(x) unlist(x$ISO2)))
@@ -16,7 +19,7 @@ slc <- unique(c(qst,wrld@data$ISO2[unique(unlist(wlim[wrld@data$ISO2 %in% qst]))
 ## use 'occ_search' function from package 'rgbif'
 ## query results are stored in a Rdata file, we will use this file
 ## if it is available, otherwise download the data
-GBIF.rslt <- sprintf("Rdata/Gbif.%s.rda",gsub(" ","_",spp))
+GBIF.rslt <- sprintf("%s/Gbif.%s.rda",gbif.dir,gsub(" ","_",spp))
 if (!file.exists(GBIF.rslt)) {
     prb <- occ_search(scientificName=spp,limit=200000)
     save(file=GBIF.rslt,prb)
