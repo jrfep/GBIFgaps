@@ -67,15 +67,18 @@ for (k in 1:length(lst)) {
                                      subset(tt,sets %in% 2)$area.km2,0),
                                  GE=ifelse (any(tt$sets %in% 3),
                                      subset(tt,sets %in% 3)$area.km2,0)))
-            
+            ## script to create some images for the presentation
+            ##   at https://youtu.be/sCSlzzgab8Q
+            source("R/code3_figures.R")
         }
     }
 }
 
 
-
 ## script to create some images for the presentation
 ##   at https://youtu.be/sCSlzzgab8Q
-##source("R/code3_figures.R")
+source("R/code4_figures_group.R")
+source("R/code5_otherfigures.R")
+       
 
 
