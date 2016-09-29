@@ -59,7 +59,7 @@ points(xy1,pch=3,col="slateblue4",cex=0.7)
 dev.off()
 
 
-png(file=file=sprintf("img/%s/Fig_Overlap_%s.png",gsub(" ","_",spp),mi.alpha),
+png(file=sprintf("img/%s/Fig_Overlap_%s.png",gsub(" ","_",spp),mi.alpha),
     width=500,height=500)
 plot(e,sub=spp,font.sub=4,lty=0,xlab="Longitude",ylab="Latitude",
      main=expression(alpha-plain(hull) + plain(range-map)),font.main=2)
@@ -72,11 +72,10 @@ dev.off()
 
 
 
+tst <- summaries.spp[summaries.spp$spp %in% spp &
+                         summaries.spp$alpha %in% mi.alpha,,drop=F]
 
-
-tst <- subset(summaries.spp,spp %in% "Amazona amazonica" & alpha %in% 6)
-
-png(file="img/FigVennAmaz.png",
+png(file=sprintf("img/%s/Fig_Triplot_%s.png",gsub(" ","_",spp),mi.alpha),
     pointsize=20,width=700,height=700)
 par(mar=c(0,0,0,0))
 overlap.plot(tst[,3:5]*100/rowSums(tst[,3:5]),
