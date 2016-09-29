@@ -26,6 +26,16 @@ A user, data provider or data manager can see at a glance whether the results fo
 
 In case of OVERLAP the results can be used with higher confidence. In case of spotting a DATA GAP the users might decide to use alternative data sources, while data providers could gather efforts to close this geographical gaps. In case of KNOWLEDGE GAP, data providers and data managers should check for errors in identification or georeferencing in their data, or check the consistency of the taxonomy used.
 
+FILES AND DATA
+
+R code for a single species example and multiple species is included in folder 'R'.
+
+Source shapefiles representing species range's for one of the examples and political boundaries are included in folder 'data', see below for sources acknowledgement.
+
+Gbif data used in the examples was downloaded using the rgbif-package interfase to GBIF API, query results where kept as Rdata files for reproducibility. They are located in folder 'Rdata'. 
+
+Output image files are kept in folder 'img'.
+
 SOURCES USED
 
 _Software and packages_
@@ -64,6 +74,10 @@ I used R version 3.3.1 and packages raster (version 2.5-8), sp (version 1.2-3), 
 * R Core Team (2016). R: A language and environment for statistical
   computing. R Foundation for Statistical Computing, Vienna, Austria.
   URL https://www.R-project.org/.
+
+_GBIF mediated data_
+
+GBIF data was downloaded using the rgbif package as an interface to the Global Biodiversity Information Facility API (http://www.gbif.org/developer/summary). For all queries, the data and metadata, including information about sources and providers, are stored in R-objects saved as Rdata files in folder 'Rdata'.
 
 _Species range data and other vector files_
 
