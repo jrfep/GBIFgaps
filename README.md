@@ -32,36 +32,36 @@ _Software and packages_
 
 I used R version 3.3.1 and packages raster (version 2.5-8), sp (version 1.2-3), rgbif (version 0.9.4), alphahull (version 2.1), spdep (version 0.6-6), Matrix (version 1.2-6), RColorBrewer (version 1.1-2).
 
-Douglas Bates and Martin Maechler (2016). Matrix: Sparse and Dense
+* Douglas Bates and Martin Maechler (2016). Matrix: Sparse and Dense
   Matrix Classes and Methods. R package version 1.2-6.
   https://CRAN.R-project.org/package=Matrix
 
-Roger S. Bivand, Edzer Pebesma, Virgilio Gomez-Rubio, 2013. Applied
+* Roger S. Bivand, Edzer Pebesma, Virgilio Gomez-Rubio, 2013. Applied
   spatial data analysis with R, Second edition. Springer, NY.
   http://www.asdar-book.org/
 
-Roger S. Bivand, Gianfranco Piras (2015). Comparing Implementations of
+* Roger S. Bivand, Gianfranco Piras (2015). Comparing Implementations of
   Estimation Methods for Spatial Econometrics. Journal of Statistical
   Software, 63(18), 1-36. URL http://www.jstatsoft.org/v63/i18/.
 
-Scott Chamberlain, Karthik Ram, Vijay Barve and Dan Mcglinn (2016).
+* Scott Chamberlain, Karthik Ram, Vijay Barve and Dan Mcglinn (2016).
   rgbif: Interface to the Global 'Biodiversity' Information Facility
   'API'. R package version 0.9.4.
   https://CRAN.R-project.org/package=rgbif
 
-Robert J. Hijmans (2016). raster: Geographic Data Analysis and
+* Robert J. Hijmans (2016). raster: Geographic Data Analysis and
   Modeling. R package version 2.5-8.
   https://CRAN.R-project.org/package=raster
 
-Erich Neuwirth (2014). RColorBrewer: ColorBrewer Palettes. R package
+* Erich Neuwirth (2014). RColorBrewer: ColorBrewer Palettes. R package
   version 1.1-2. https://CRAN.R-project.org/package=RColorBrewer
 
-Beatriz Pateiro-Lopez, Alberto Rodriguez-Casal and . (2016).
+* Beatriz Pateiro-Lopez, Alberto Rodriguez-Casal and . (2016).
   alphahull: Generalization of the Convex Hull of a Sample of Points in
   the Plane. R package version 2.1.
   https://CRAN.R-project.org/package=alphahull
 
-R Core Team (2016). R: A language and environment for statistical
+* R Core Team (2016). R: A language and environment for statistical
   computing. R Foundation for Statistical Computing, Vienna, Austria.
   URL https://www.R-project.org/.
 
