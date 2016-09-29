@@ -111,7 +111,7 @@ dev.off()
 
 tst <- subset(summaries.spp,spp %in% "Amazona amazonica" & alpha %in% 6)
 
-png(file="~/Imágenes/presentacionGBIF/FigVennAmaz.png",
+png(file="img/FigVennAmaz.png",
     pointsize=20,width=700,height=700)
 par(mar=c(0,0,0,0))
 overlap.plot(tst[,3:5]*100/rowSums(tst[,3:5]),
@@ -124,7 +124,7 @@ require(RColorBrewer)
 tst <- subset(summaries.spp,alpha %in% 6)
 tst$clr <- brewer.pal(8,"Set3")
 
-png(file="~/Imágenes/presentacionGBIF/FigVennSeveral.png",
+png(file="img/FigVennSeveral.png",
     pointsize=20,width=700,height=700)
 par(mar=c(0,0,0,0))
 overlap.plot(tst[,3:5]*100/rowSums(tst[,3:5]),
@@ -137,7 +137,7 @@ dev.off()
 
 tst <- subset(summaries.spp,spp %in% "Amazona amazonica")
 
-png(file="~/Imágenes/presentacionGBIF/FigVennAlphas.png",
+png(file="img/FigVennAlphas.png",
     pointsize=20,width=700,height=700)
 par(mar=c(0,0,0,0))
 overlap.plot(tst[,3:5]*100/rowSums(tst[,3:5]),
